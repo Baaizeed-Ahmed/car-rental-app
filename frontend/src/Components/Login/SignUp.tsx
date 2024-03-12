@@ -28,7 +28,7 @@ const Signup: React.FC = () => {
 
   const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
 
     if (!validateForm()) {
       return;
@@ -39,7 +39,7 @@ const Signup: React.FC = () => {
         "https://localhost:7039/api/Auth/register",
         { Username: username, Email: email, Password: password },
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: { "Content-Type": "application/json" },
         }
       );
       console.log("Signup successful:", response.data);
@@ -60,20 +60,36 @@ const Signup: React.FC = () => {
       <form onSubmit={handleSignup}>
         <div>
           <label htmlFor="email">Email:</label>
-          <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="username">Username:</label>
-          <input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <button type="submit">Sign Up</button>
       </form>
       <p>
-        Already have an account? <button onClick={() => navigate("/login")}>Login</button>
+        Already have an account?{" "}
+        <button onClick={() => navigate("/login")}>Login</button>
       </p>
     </div>
   );

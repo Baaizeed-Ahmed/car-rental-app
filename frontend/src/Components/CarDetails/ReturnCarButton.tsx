@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 interface ReturnCarButtonProps {
   userId: number;
@@ -31,7 +31,9 @@ const ReturnCarButton: React.FC<ReturnCarButtonProps> = ({
       // Handle error response with data
       let errorMessage = "An unexpected error occurred";
       if (axios.isAxiosError(error) && error.response) {
-        errorMessage = error.response.data.detail || JSON.stringify(error.response.data, null, 2);
+        errorMessage =
+          error.response.data.detail ||
+          JSON.stringify(error.response.data, null, 2);
       } else if (error instanceof Error) {
         errorMessage = error.message;
       }
@@ -43,7 +45,7 @@ const ReturnCarButton: React.FC<ReturnCarButtonProps> = ({
 
   return (
     <button onClick={handleReturnCar} disabled={isLoading}>
-      {isLoading ? 'Returning...' : 'Return Car'}
+      {isLoading ? "Returning..." : "Return Car"}
     </button>
   );
 };

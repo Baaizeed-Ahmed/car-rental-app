@@ -1,12 +1,13 @@
-import React, { useState, FormEvent, useContext } from 'react';
-import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import { UserContext } from './UserContext';
+import React, { useState, FormEvent, useContext } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import { UserContext } from "./UserContext";
+
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 
@@ -24,7 +25,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    setError(''); // Reset error message
+    setError(""); // Reset error message
 
     if (!validateForm()) {
       return; // Stop the form submission if validation fails
@@ -32,19 +33,22 @@ const Login: React.FC = () => {
 
     try {
       const response = await axios.post(
-        'https://localhost:7039/api/Auth/login',
+        "https://localhost:7039/api/Auth/login",
         { Username: username, Password: password },
-        { headers: { 'Content-Type': 'application/json' } }
+        { headers: { "Content-Type": "application/json" } }
       );
-      console.log('Login successful:', response.data);
+      console.log("Login successful:", response.data);
       userContext?.setUser({ userId: response.data.userId });
-      navigate('/cars'); // Redirect to home page upon successful login
+      navigate("/cars"); // Redirect to home page upon successful login
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         // Check if the API returned a specific error message and display it
-        setError(err.response.data?.message || 'Failed to login. Please check your credentials.');
+        setError(
+          err.response.data?.message ||
+            "Failed to login. Please check your credentials."
+        );
       } else {
-        setError('Failed to login due to a network or server issue.');
+        setError("Failed to login due to a network or server issue.");
       }
     }
   };
@@ -52,7 +56,7 @@ const Login: React.FC = () => {
   return (
     <div>
       <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="username">Username:</label>

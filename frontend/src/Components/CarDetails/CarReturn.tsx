@@ -43,7 +43,7 @@ const CurrentRental: React.FC = () => {
 
   const handleReturnSuccess = () => {
     alert("Car returned successfully.");
-    navigate('/cars'); // Assuming you want to navigate to the list of cars after return
+    navigate("/cars");
   };
 
   const handleError = (error: string) => {
