@@ -3,8 +3,9 @@
     "",
     "\\backend",
     "\\backend\\CarRentalsApi",
+    "\\backend\\CarRentalsApi\\Controllers",
     "\\backend\\CarRentalsApi\\Migrations"
   ],
-  "SelectedNode": "\\backend\\CarRentalsApi\\Migrations\\20240222122011_AddCarModel.cs",
+  "SelectedNode": "\\backend\\CarRentalsApi\\Controllers\\CarController.cs",
   "PreviewInSolutionExplorer": false
 }

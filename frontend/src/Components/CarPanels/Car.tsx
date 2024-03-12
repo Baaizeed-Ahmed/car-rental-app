@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Car } from "../../models/car";
-import "./Car.css";
+import "./car.css";
 import Header from "../Header/Header";
 import { Link } from "react-router-dom";
 
