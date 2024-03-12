@@ -10,29 +10,37 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 
+  const validateForm = () => {
+    if (!username.trim()) {
+      setError("Username is required.");
+      return false;
+    }
+    if (!password.trim()) {
+      setError("Password is required.");
+      return false;
+    }
+    return true; // Validation passed
+  };
+
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError(''); // Reset error message
+
+    if (!validateForm()) {
+      return; // Stop the form submission if validation fails
+    }
 
     try {
       const response = await axios.post(
         'https://localhost:7039/api/Auth/login',
-        {
-          Username: username,
-          Password: password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
+        { Username: username, Password: password },
+        { headers: { 'Content-Type': 'application/json' } }
       );
 
       // Assuming the API returns a user object and possibly a token in response.data
       console.log('Login successful:', response.data);
       userContext?.setUser({ userId: response.data.userId });
-      // Redirect to home page upon successful login
-      navigate('/cars');
+      navigate('/cars'); // Redirect to home page upon successful login
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         // Check if the API returned a specific error message and display it
