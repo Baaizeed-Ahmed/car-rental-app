@@ -3,37 +3,51 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Signup: React.FC = () => {
-  const [username, setUsername] = useState<string>(""); // State for username
-  const [email, setEmail] = useState<string>(""); // State for email
-  const [password, setPassword] = useState<string>(""); // State for password
-  const [error, setError] = useState<string>(""); // State for storing any error messages
-  const navigate = useNavigate(); // Hook for navigating to different routes
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
+
+  const validateForm = () => {
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!username.trim()) {
+      setError("Username is required");
+      return false;
+    }
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address");
+      return false;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return false;
+    }
+    return true;
+  };
 
   const handleSignup = async (e: FormEvent) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
     setError(""); // Reset error message
 
+    if (!validateForm()) {
+      return;
+    }
+
     try {
-      // Perform the signup request to your API endpoint
       const response = await axios.post(
         "https://localhost:7039/api/Auth/register",
-        { Username: username, Email: email, Password: password }, // Include email in the payload
+        { Username: username, Email: email, Password: password },
         {
-          headers: {
-            'Content-Type': 'application/json', // Ensure the correct content type for JSON
-          },
+          headers: { 'Content-Type': 'application/json' },
         }
       );
-
       console.log("Signup successful:", response.data);
-      navigate("/login"); // Navigate to the login page on successful signup
+      navigate("/login");
     } catch (err) {
-      // Handle any errors that occur during signup
       if (axios.isAxiosError(err) && err.response) {
-        // If the error is from the API, use the API's error message
         setError(err.response.data?.message || "Failed to sign up.");
       } else {
-        // For other errors, such as network issues, display a generic error message
         setError("Failed to sign up due to a network or server issue.");
       }
     }
@@ -46,33 +60,21 @@ const Signup: React.FC = () => {
       <form onSubmit={handleSignup}>
         <div>
           <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email" // Use email type for basic email validation
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} // Update email state on change
-          />
+          <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
           <label htmlFor="username">Username:</label>
-          <input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)} // Update username state on change
-          />
+          <input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} // Update password state on change
-          />
+          <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button type="submit">Sign Up</button>
       </form>
+      <p>
+        Already have an account? <button onClick={() => navigate("/login")}>Login</button>
+      </p>
     </div>
   );
 };
