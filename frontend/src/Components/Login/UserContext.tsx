@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AuthUser {
   userId: string | null;
-  // Include any other user details you want to store globally
 }
 
 interface UserContextType {

@@ -28,7 +28,7 @@ const Signup: React.FC = () => {
 
   const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
-    setError(""); // Reset error message
+    setError(""); 
 
     if (!validateForm()) {
       return;

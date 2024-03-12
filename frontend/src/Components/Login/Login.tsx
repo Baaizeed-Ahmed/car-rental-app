@@ -36,8 +36,6 @@ const Login: React.FC = () => {
         { Username: username, Password: password },
         { headers: { 'Content-Type': 'application/json' } }
       );
-
-      // Assuming the API returns a user object and possibly a token in response.data
       console.log('Login successful:', response.data);
       userContext?.setUser({ userId: response.data.userId });
       navigate('/cars'); // Redirect to home page upon successful login
@@ -46,7 +44,6 @@ const Login: React.FC = () => {
         // Check if the API returned a specific error message and display it
         setError(err.response.data?.message || 'Failed to login. Please check your credentials.');
       } else {
-        // Handle other errors such as network issues
         setError('Failed to login due to a network or server issue.');
       }
     }
