@@ -9,5 +9,7 @@ namespace UserAuthenticationApi.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Car> Cars { get; set; } // Add this line
+
+        public DbSet<Rental> Rentals { get; set; }
     }
 }

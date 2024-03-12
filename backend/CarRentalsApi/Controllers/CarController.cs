@@ -78,6 +78,25 @@ namespace UserAuthenticationApi.Controllers
 
             return NoContent();
         }
+        [HttpPost("rent/{id}")]
+        public async Task<ActionResult> RentCar(int id)
+        {
+            var car = await _context.Cars.FindAsync(id);
+            if (car == null)
+            {
+                return NotFound("Car not found.");
+            }
+
+            if (!car.IsAvailable)
+            {
+                return BadRequest("Car is already rented.");
+            }
+
+            car.IsAvailable = false;
+            await _context.SaveChangesAsync();
+
+            return Ok($"Car {car.Name} has been rented successfully.");
+        }
 
         // DELETE: api/Car/5
         [HttpDelete("{id}")]

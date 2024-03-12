@@ -17,6 +17,6 @@ namespace UserAuthenticationApi.Models
         public decimal PricePerDay { get; set; }
 
         [Required]
-        public bool IsAvailableThisWeek { get; set; }
+        public bool IsAvailable { get; set; } = true;
     }
 }

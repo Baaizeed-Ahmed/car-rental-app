@@ -12,5 +12,6 @@ namespace UserAuthenticationApi.Models
 
         [Required]
         public string Password { get; set; }
+
     }
 }

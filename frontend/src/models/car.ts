@@ -3,6 +3,7 @@ export interface Car {
     name: string;
     imageUrl: string;
     pricePerDay: number;
-    isAvailableThisWeek: boolean;
+    isAvailable: boolean;
+
   }
   

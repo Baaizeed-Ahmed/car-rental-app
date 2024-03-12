@@ -1,0 +1,36 @@
+.car-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .car-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .car-image {
+    flex-shrink: 0;
+    width: 500px; /* Adjust the image size as needed */
+    height: auto;
+    margin-right: 20px;
+    border-radius: 4px;
+  }
+  
+  .car-info {
+    flex-grow: 1;
+  }
+  
+  .car-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .car-detail {
+    margin: 5px 0;
+  }
+  
