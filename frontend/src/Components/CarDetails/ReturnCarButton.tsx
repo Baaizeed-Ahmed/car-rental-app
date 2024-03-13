@@ -20,7 +20,7 @@ const ReturnCarButton: React.FC<ReturnCarButtonProps> = ({
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `https://localhost:7039/api/Rental/Return/${userId}/${carId}`
+        `https://localhost:7039/api/Rental/Return/${userId}/2`
       );
       if (response.status === 200) {
         onReturnSuccess();

@@ -16,26 +16,25 @@ const CarDetails = () => {
     throw new Error('UserContext is not available');
   }
 
-  const { user, setUser } = userContext;
+  const { user } = userContext;
 
   useEffect(() => {
     fetch(`https://localhost:7039/api/Car/${carId}`)
       .then(response => response.json())
       .then(data => {
         if (!data) {
-          navigate('/not-found'); // Navigate to a not-found page if the car doesn't exist
+          navigate('/not-found');
         } else {
           setCar(data);
         }
       })
       .catch(error => {
         console.error('Fetching car details failed', error);
-        navigate('/error'); // Navigate to an error page on fetch failure
+        navigate('/error');
       });
   }, [carId, navigate]);
 
   const rentCar = async () => {
-    // Check if the user is logged in
     if (!user || !user.userId) {
       alert('You must be logged in to rent a car.');
       return;
@@ -43,19 +42,27 @@ const CarDetails = () => {
 
     try {
       const response = await fetch(`https://localhost:7039/api/rental/${user.userId}/${carId}`, { method: 'POST' });
-      if (!response.ok) {
+      if (response.ok) {
+        alert('Car rented successfully!');
+        setCar(prevState => {
+          return prevState ? { ...prevState, isAvailable: false } : prevState;
+        });
+      } else if (response.status === 400) {
+        const errorMessage = await response.text();
+        alert(errorMessage || 'You are already renting a car.');
+      } else {
         throw new Error('Failed to rent car');
       }
-      alert('Car rented successfully!');
-      setCar(prevState => {
-        if (prevState) {
-          return { ...prevState, isAvailable: false };
-        }
-        return prevState;
-      });
     } catch (error) {
-      console.error('Error renting car:', error);
-      alert('Error renting car. Please try again.');
+      // Type assertion to treat error as an instance of Error
+      if (error instanceof Error) {
+        console.error('Error renting car:', error);
+        alert(error.message || 'Error renting car. Please try again.');
+      } else {
+        // Handle cases where the error is not an instance of Error
+        console.error('An unexpected error occurred:', error);
+        alert('An unexpected error occurred. Please try again.');
+      }
     }
   };
 
@@ -68,6 +75,7 @@ const CarDetails = () => {
       <p>Price: ${car.pricePerDay.toFixed(2)}</p>
       <p>Available This Week: {car.isAvailable ? 'Yes' : 'No'}</p>
       {car.isAvailable && <button onClick={rentCar}>Rent</button>}
+      <button onClick={() => navigate('/cars')}>Back to Cars</button>
     </div>
   );
 };
