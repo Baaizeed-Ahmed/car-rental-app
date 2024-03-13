@@ -5,11 +5,15 @@ namespace UserAuthenticationApi.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Car> Cars { get; set; } // Add this line
+        // By marking the DbSet properties as virtual, you can mock them in your unit tests.
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Car> Cars { get; set; } // Assuming you have a Car entity
+        public virtual DbSet<Rental> Rentals { get; set; } // Assuming you have a Rental entity
 
-        public DbSet<Rental> Rentals { get; set; }
+        // ... Add any additional DbSets or other context configuration here ...
     }
 }

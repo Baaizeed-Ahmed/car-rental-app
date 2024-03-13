@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,34 +44,67 @@ namespace UserAuthenticationApi.Tests
         public async Task Login_ValidCredentials_ReturnsOkResponse()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()) // Unique database name for test
-                .Options;
-
-            User testUser;
-            using (var arrangeContext = new AppDbContext(options))
+            using (var context = new AppDbContext(_dbContextOptions))
             {
-                testUser = new User { Username = "testuser", Password = "testpassword" };
-                arrangeContext.Users.Add(testUser);
-                await arrangeContext.SaveChangesAsync();
-            }
-
-            // Act & Assert
-            using (var actAssertContext = new AppDbContext(options))
-            {
-                var controller = new AuthController(actAssertContext);
+                var controller = new AuthController(context);
+                var testUser = new User { Username = "testuser", Password = "testpassword" };
+                await context.Users.AddAsync(testUser);
+                await context.SaveChangesAsync();
 
                 // Act
-                var loginResult = await controller.Login(new User { Username = "testuser", Password = "testpassword" });
+                var result = await controller.Login(new User { Username = "testuser", Password = "testpassword" });
 
                 // Assert
-                var okObjectResult = Assert.IsType<OkObjectResult>(loginResult.Result);
+                var okObjectResult = Assert.IsType<OkObjectResult>(result.Result);
                 dynamic loginResponse = okObjectResult.Value;
                 Assert.Equal("Login successful", loginResponse.message);
-                Assert.Equal(testUser.Id, loginResponse.userId); ; // Here we're using the ID from the testUser
+                Assert.Equal(testUser.Id, loginResponse.userId);
             }
         }
 
+        // The following are the new tests added.
 
+        [Fact]
+        public async Task Register_ExistingUsername_ReturnsBadRequest()
+        {
+            // Arrange
+            using (var context = new AppDbContext(_dbContextOptions))
+            {
+                var controller = new AuthController(context);
+                var existingUser = new User { Username = "existinguser", Password = "existingpassword" };
+                await context.Users.AddAsync(existingUser);
+                await context.SaveChangesAsync();
+
+                var newUser = new User { Username = "existinguser", Password = "newpassword" };
+
+                // Act
+                var result = await controller.Register(newUser);
+
+                // Assert
+                var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+                Assert.Equal("Username already exists.", badRequestResult.Value);
+            }
+        }
+
+        [Fact]
+        public async Task Login_InvalidCredentials_ReturnsNotFoundResponse()
+        {
+            // Arrange
+            using (var context = new AppDbContext(_dbContextOptions))
+            {
+                var controller = new AuthController(context);
+                var newUser = new User { Username = "testuser", Password = "testpassword" };
+                await context.Users.AddAsync(newUser);
+                await context.SaveChangesAsync();
+
+                // Act
+                var result = await controller.Login(new User { Username = "testuser", Password = "wrongpassword" });
+
+                // Assert
+                var notFoundResult = Assert.IsType<NotFoundObjectResult>(result.Result);
+                dynamic notFoundResponse = notFoundResult.Value;
+                Assert.Equal("Invalid login credentials.", notFoundResponse.message);
+            }
+        }
     }
 }
