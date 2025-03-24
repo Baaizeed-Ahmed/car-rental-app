@@ -4,8 +4,8 @@
     "\\backend",
     "\\backend\\CarRentalsApi",
     "\\backend\\CarRentalsApi\\Controllers",
-    "\\backend\\CarRentalsApi\\Migrations"
+    "\\backend\\CarRentalsApi\\Migrations",
+    "\\backend\\CarRentalsApi\\__Tests__"
   ],
-  "SelectedNode": "\\backend\\CarRentalsApi\\Controllers\\CarController.cs",
   "PreviewInSolutionExplorer": false
 }
