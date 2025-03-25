@@ -17,3 +17,5 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\mahmed189\OneDrive - pwc\Documents\GitHub\part-b-mvp-of-a-full-stack-solution-60-Baaizeed-Ahmed\backend\CarRentalsApi
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 

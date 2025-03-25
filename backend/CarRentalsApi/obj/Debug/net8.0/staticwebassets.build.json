@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "gMhp+5L146gPbptb0SsciOOjEuOiwO+JfYPWbeq245g=",
+  "Hash": "czsKDYiZU64qENdxzhUqulFNvXVZR8ZKdMh9tApHQ4k=",
   "Source": "CarRentalsApi",
   "BasePath": "_content/CarRentalsApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
