@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\CarRentalsApi",
+    "\\backend\\CarRentalsApi\\Controllers",
+    "\\backend\\CarRentalsApi\\Migrations"
+  ],
+  "SelectedNode": "\\backend\\CarRentalsApi\\Controllers\\CarController.cs",
+  "PreviewInSolutionExplorer": false
+}
