@@ -45,10 +45,6 @@ This system follows a **three-layer architecture**:
 - Separation of concerns through layered architecture.
 - Easily extensible database schema and services.
 
-#### Performance
-- Eager loading and pagination to prevent over-fetching.
-- Optimized LINQ queries and database indexing.
-- React memoization (`React.memo`, `useMemo`) and code splitting for faster rendering.
 
 #### Robustness
 - Global error-handling middleware in the API.
