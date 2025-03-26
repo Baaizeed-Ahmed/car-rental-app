@@ -59,8 +59,8 @@ This system follows a **three-layer architecture**:
 
 ### ☁️ Deployment
 
-**Frontend** – Deployed using [e.g., Vercel, Netlify]  
-**Backend** – Deployed on [e.g., Render, Railway, Azure App Service]  
+**Frontend** – Deployed using [e.g., React]  
+**Backend** – Deployed on [e.g., Render, .net]  
 **Database** – SQL Server hosted on [e.g., Azure SQL, Render]
 
 **Security Best Practices**
