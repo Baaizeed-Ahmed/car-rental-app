@@ -1,13 +1,13 @@
-## 📌 Car Rental Application - README
+## Car Rental Application - README
 
 ---
 
-### 🔖 Introduction
+### Introduction
 The Car Rental App is a full-stack enterprise solution designed to streamline the process of renting vehicles. It allows users to browse a fleet of cars, make bookings, and manage their rentals, while administrators can manage inventory and oversee bookings. The system is built with scalability, performance, and security in mind.
 
 ---
 
-### 🌟 Project Aim & Objectives
+### Project Aim & Objectives
 
 **Main Goal**  
 To deliver a scalable and secure enterprise-grade car rental system that facilitates vehicle reservations, rental tracking, and admin management.
@@ -21,47 +21,47 @@ To deliver a scalable and secure enterprise-grade car rental system that facilit
 
 ---
 
-### 🧱🛁 Solution Overview
+### Solution Overview
 This system follows a **three-layer architecture**:
 
-1. **Frontend** – Built in React, providing users and admins with intuitive interfaces.
-2. **Middleware/API** – .NET Core Web API for business logic and data access.
-3. **Backend** – SQL Server database using Entity Framework Core.
+1. **Frontend** – Built in React, providing users and admins with intuitive interfaces and deployed using render.
+2. **Middleware/API** – .NET Core Web API for business logic and data access deployed using azure.
+3. **Backend** – SQL Server database deployed on azure.
 
 ---
 
-### 🛡️ Enterprise Considerations
+### Enterprise Considerations
 
-#### 🔐 Security
+#### Security
 - JWT-based user authentication.
 - Passwords hashed using industry-standard cryptographic algorithms.
 - Role-based access control (admin vs customer).
 - Input validation on both frontend and backend.
 - Secure HTTP headers and CORS configuration.
 
-#### ⚙️ Scalability
+#### Scalability
 - Modular folder structure for features and components.
 - Stateless API design for future scalability with microservices.
 - Separation of concerns through layered architecture.
 - Easily extensible database schema and services.
 
-#### 🚀 Performance
+#### Performance
 - Eager loading and pagination to prevent over-fetching.
 - Optimized LINQ queries and database indexing.
 - React memoization (`React.memo`, `useMemo`) and code splitting for faster rendering.
 
-#### 💪 Robustness
+#### Robustness
 - Global error-handling middleware in the API.
 - Form validation and optimistic UI on the frontend.
 - Try-catch blocks and logging for runtime resilience.
 
 ---
 
-### ☁️ Deployment
+### Deployment
 
-**Frontend** – Deployed using [e.g., React]  
-**Backend** – Deployed on [e.g., Render, .net]  
-**Database** – SQL Server hosted on [e.g., Azure SQL, Render]
+**Frontend** – Deployed using [e.g., Render, React]  
+**Backend** – Deployed on [e.g., Azure, .net]  
+**Database** – SQL Server hosted on [e.g., Azure SQL]
 
 **Security Best Practices**
 - Environment variables are used for sensitive credentials.
@@ -70,20 +70,20 @@ This system follows a **three-layer architecture**:
 
 ---
 
-### ⚙️ Installation & Setup
+### Installation & Setup
 
-#### 🛠 Prerequisites
+#### Prerequisites
 - [.NET SDK 6.0+](https://dotnet.microsoft.com/)
 - [Node.js 18+](https://nodejs.org/)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server)
 
-#### 🧹 Clone & Setup
+#### Clone & Setup
 ```bash
 git clone https://github.com/Baaizeed-Ahmed/car-rental-repo.git
 cd car-rental-repo
 ```
 
-#### 📁 Backend Setup
+#### Backend Setup
 ```bash
 cd backend
 dotnet restore
@@ -91,7 +91,7 @@ dotnet ef database update
 dotnet run
 ```
 
-#### 🧑‍🎨 Frontend Setup
+#### Frontend Setup
 ```bash
 cd frontend
 npm install
@@ -102,7 +102,7 @@ npm start
 
 ---
 
-### 🚘 Feature Overview
+### Feature Overview
 
 | Feature              | Description                                                  | Code Location |
 |----------------------|--------------------------------------------------------------|---------------|
@@ -115,7 +115,7 @@ npm start
 
 ---
 
-### 🤞 Known Issues & Future Enhancements
+### Known Issues & Future Enhancements
 
 - 📉 No real-time availability check (could be improved with WebSockets).
 - 📋 Admin analytics dashboard is in progress.
@@ -124,7 +124,7 @@ npm start
 
 ---
 
-### 📚 References
+### References
 
 - React + Vite official docs  
 - .NET Core & EF Core documentation  
