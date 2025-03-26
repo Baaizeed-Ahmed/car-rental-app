@@ -103,7 +103,7 @@
               "RelativeDocumentMoniker": "CarRentalsApi\\appsettings.json",
               "ToolTip": "C:\\Users\\mahmed189\\OneDrive - pwc\\Documents\\GitHub\\part-b-mvp-of-a-full-stack-solution-60-Baaizeed-Ahmed\\backend\\CarRentalsApi\\appsettings.json",
               "RelativeToolTip": "CarRentalsApi\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-02-22T15:18:18.662Z",
               "EditorCaption": ""
@@ -118,7 +118,8 @@
               "RelativeToolTip": "CarRentalsApi\\Controllers\\AuthController.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAgwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-22T15:18:17.617Z"
+              "WhenOpened": "2024-02-22T15:18:17.617Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
