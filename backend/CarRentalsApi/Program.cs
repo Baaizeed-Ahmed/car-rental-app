@@ -35,6 +35,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseMiddleware<RequestLoggingMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization(); // Note: If you're using authentication, app.UseAuthentication() should be called before this
